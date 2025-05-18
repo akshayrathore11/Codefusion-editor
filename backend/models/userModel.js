@@ -1,13 +1,11 @@
-let mongoose = require('mongoose');
+const mongoose = require('./db');
 
-mongoose.connect('mongodb://localhost:27017/minor');
-
-let userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: String,
   username: String,
   email: String,
   password: String,
-  date:{
+  date: {
     type: Date,
     default: Date.now
   },
@@ -21,4 +19,4 @@ let userSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('User', userSchema); 
+module.exports = mongoose.model('User', userSchema);

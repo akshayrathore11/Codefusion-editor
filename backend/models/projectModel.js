@@ -1,6 +1,4 @@
-const mongoose = require("mongoose");
-
-mongoose.connect('mongodb://localhost:27017/minor');
+const mongoose = require('./db');
 
 const projectSchema = new mongoose.Schema({
   title: String,
@@ -40,4 +38,4 @@ const projectSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Project", projectSchema);
+module.exports = mongoose.model('Project', projectSchema);

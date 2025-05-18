@@ -1,17 +1,16 @@
-var express = require('express');
-var router = express.Router();
-var bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
-var userModel = require("../models/userModel");
-var projectModel = require("../models/projectModel");
+let express = require('express');
+let router = express.Router();
+let bcrypt = require("bcryptjs");
+let jwt = require("jsonwebtoken");
+let userModel = require("../models/userModel");
+let projectModel = require("../models/projectModel");
 
-
+/* GET home page. */
 // router.get('/', function (req, res, next) {
-  
 //   res.render('index', { title: 'Express' });
 // });
 
-const secret = "secret"; 
+const secret = "secret"; // secret key for jwt
 
 router.post("/signUp", async (req, res) => {
   let { username, name, email, password } = req.body;
@@ -42,7 +41,7 @@ router.post("/login", async (req, res) => {
   let user = await userModel.findOne({ email: email });
 
   if (user) {
-   
+    // Rename the second `res` to avoid conflict
     bcrypt.compare(password, user.password, function (err, isMatch) {
       if (err) {
         return res.json({ success: false, message: "An error occurred", error: err });
@@ -131,7 +130,7 @@ router.post("/updateProject", async (req, res) => {
     let project = await projectModel.findOneAndUpdate(
       { _id: projId },
       { htmlCode: htmlCode, cssCode: cssCode, jsCode: jsCode },
-      { new: true } 
+      { new: true } // This option returns the updated document
     );
 
     if (project) {
@@ -143,5 +142,6 @@ router.post("/updateProject", async (req, res) => {
     return res.json({ success: false, message: "User not found!" });
   }
 });
+
 
 module.exports = router;
