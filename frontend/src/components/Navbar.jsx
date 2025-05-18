@@ -47,8 +47,13 @@ const Navbar = ({ isGridLayout, setIsGridLayout }) => {
           <img className="w-[150px] cursor-pointer" src={logo} alt="" />
         </div>
 
-        <a href="https://codefusion-tutorial.vercel.app/" target="_blank">Tutorials</a>
-       
+        {/* <a href="https://codefusion-tutorial.vercel.app/" target="_blank">Tutorials</a> */}
+        
+<a href="https://codefusion-tutorial.vercel.app/" target="_blank" 
+   class="text-blue-400 hover:text-blue-500 font-semibold transition duration-300 ease-in-out">
+  Tutorials
+</a>
+
 
 
         <div className="links flex items-center gap-2">
