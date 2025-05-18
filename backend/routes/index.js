@@ -6,10 +6,10 @@ var userModel = require("../models/userModel");
 var projectModel = require("../models/projectModel");
 
 
-router.get('/', function (req, res, next) {
+// router.get('/', function (req, res, next) {
   
-  res.render('index', { title: 'Express' });
-});
+//   res.render('index', { title: 'Express' });
+// });
 
 const secret = "secret"; 
 
@@ -143,6 +143,5 @@ router.post("/updateProject", async (req, res) => {
     return res.json({ success: false, message: "User not found!" });
   }
 });
-
 
 module.exports = router;

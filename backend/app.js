@@ -10,6 +10,11 @@ let usersRouter = require('./routes/users');
 
 let app = express();
 
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -19,11 +24,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(cors());
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// ---- ADD THIS BLOCK ----
+app.use(express.static(path.join(__dirname, 'dist')));
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+// ---- END OF BLOCK ----
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -32,11 +44,8 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
