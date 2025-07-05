@@ -11,4 +11,4 @@ export const removeClass = (el,className) => {
 };
 
 
-export const api_base_url = "https://codefusion-editor-gwub.onrender.com"
+export const api_base_url = "https://codefusion-editor-sq3c.onrender.com"
